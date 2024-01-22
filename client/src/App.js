@@ -28,6 +28,7 @@ import MakeAdmin from "./Components/MakeAdmin/MakeAdmin";
 
 function App() {
   const { users } = useFirebase();
+  //console.log(users)
   const [isAdmin,setIsAdmin]=useState('')
   useEffect(()=>{
     fetch(`http://localhost:5000/student/${sessionStorage.getItem('email')}`)
@@ -47,7 +48,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             {" "}
-            {users.email ? <Welcome /> : <Login />}{" "}
+            {users.email  ? <Welcome /> : <Login />}{" "}
           </Route>
           {isAdmin==="admin" &&   <Route path="/send"> <SendSms/> </Route>}
           {isAdmin==="admin" &&   <Route path="/student"> <Students/> </Route>}

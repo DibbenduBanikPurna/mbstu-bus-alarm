@@ -12,8 +12,8 @@ app.use(express());
 app.use(express.json());
 app.use(cors());
 
-const accountSid = "AC774397bdc0df9846a0b6c982b1b8d25d";
-const authToken = "f8b4fe4143c1339b235e457ae51aa50c";
+const accountSid = "ACbd24b31f4db5bd8ad63df4af3888d222";
+const authToken = "6c59dc4e6861a120f92b3becd5afcad6";
 const clients = require('twilio')(accountSid, authToken);
 
 //AIzaSyAACG3mLEXEUEDqPCvh6ZFteaLQDnH0YbI
@@ -59,15 +59,16 @@ var mailOptions = {
   from: 'purna.banik164487@gmail.com',
   to: email,
   subject: 'Sending Email using Node.js',
-  text: 'Bus is startint within 5 minutes'
+  text: 'Bus number 001,003,004 is departing from Mokto Monch within 10 minutes'
 };
 
 transporter.sendMail(mailOptions, function(error, info){
   if (error) {
     console.log(error);
+    res.status(400).send("Email Sends Success!")
   } else {
     console.log('Email sent: ' + info.response);
-    res.send("Email success")
+    res.status(200).send("Email Sends Success!")
   }
 });
     })
@@ -100,7 +101,7 @@ var mailOptions = {
 from: 'purna.banik164487@gmail.com',
 to: email,
 subject: 'Sending Email using Node.js',
-text: 'Bus is startint within 5 minutes'
+text: 'Bus number 001,002,005 is departing from Mokto Monch within 10 minutes'
 };
 
 transporter.sendMail(mailOptions, function(error, info){
@@ -158,32 +159,15 @@ res.send("Email success")
     //console.log(sms);
     
 
-    app.post('/send', async(req,res)=>{
-      const user=req.body;
-   //console.log(user)
-      const sms=[];
-      user.map((user)=>{
-        console.log(user.phone)
-        sms.push(user.phone)
-        clients.messages
-        .create({
-           body: 'Bus will start traveling into 5 min from muktomoncho',
-           from: '+12566678431',
-           to:   user.phone
-         })
-        .then(message => console.log(message.sid));
-      })
-      console.log(sms.length);
-      
-      res.json("hi")
-     
+    app.post('/sendsms', async(req,res)=>{
       clients.messages
-    .create({
-       body: 'Bus will start traveling into 5 min from muktomoncho',
-       from: '+12566678431',
-       to:  "88" +sms
-     })
-    .then(message => console.log(message.sid));
+      .create({
+         body: 'Bus number 001, 003, 004 is departing from Mokto Monch within 10 minutes',
+         from: '+16065369838',
+         to: '+8801643423006'
+       })
+      .then(message => res.send(message.sid));
+
       
     })
 
@@ -401,3 +385,23 @@ app.get("/", (req, res) => {
 app.listen(5000, () => {
   console.log("server is listenning");
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

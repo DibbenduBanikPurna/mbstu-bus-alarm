@@ -34,6 +34,11 @@ const Teachers = () => {
 
         },
         {
+            name: "DESIGNATION",
+            selector:(row)=>row.designation
+
+        },
+        {
             name:"Dept",
             selector:(row)=>row.dept,
 

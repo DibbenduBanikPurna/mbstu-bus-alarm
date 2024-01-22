@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-
+import axios from 'axios'
 
     
 
@@ -43,8 +43,12 @@ function SendSms() {
             body: JSON.stringify( phones )
         };
         fetch('http://localhost:5000/sendmail', requestOptions)
-            .then(response => response.json())
+            .then(response => alert(response.data))
             .then(data =>console.log(data));
+
+            axios.post('http://localhost:5000/sendsms')
+            .then(res=>alert(res.data))
+            .catch(err=>console.log(err))
     }
 
     const handleTeacher=()=>{

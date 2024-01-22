@@ -56,6 +56,11 @@ fetch('http://localhost:5000/teacher', requestOptions)
   
   </div>
   <div className="form-group">
+    <label for="username">DESIGNATION</label>
+    <input name="designation" onChange={handleChange} type="text" className="form-control" id="username" aria-describedby="user" placeholder="Enter Your Designation"/>
+  
+  </div>
+  <div className="form-group">
     <label for="dept">Department</label>
     <input name="dept"  onChange={handleChange}  type="text" className="form-control" id="dept" aria-describedby="dept" placeholder="Enter Your Dept."/>
   
