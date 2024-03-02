@@ -4,7 +4,7 @@ const { MongoClient, ServerApiVersion } = require("mongodb");
 const ObjectId = require("mongodb").ObjectId;
 const twilio = require('twilio');
 const nodemailer = require("nodemailer");
-
+const axios=require('axios')
 console.log(ObjectId);
 
 const app = express();
@@ -12,8 +12,8 @@ app.use(express());
 app.use(express.json());
 app.use(cors());
 
-const accountSid = "ACbd24b31f4db5bd8ad63df4af3888d222";
-const authToken = "6c59dc4e6861a120f92b3becd5afcad6";
+const accountSid ="ACbd24b31f4db5bd8ad63df4af3888d222" //"ACbd24b31f4db5bd8ad63df4af3888d222";
+const authToken = "2e232bb3363e72d3a6f96c7262fbbcf9";
 const clients = require('twilio')(accountSid, authToken);
 
 //AIzaSyAACG3mLEXEUEDqPCvh6ZFteaLQDnH0YbI
@@ -33,19 +33,25 @@ async function run() {
     const studentCollcetion = database.collection("student_details");
     const teacherCollcetion = database.collection("teacher_details");
 
+    // app.post('/sendsms',(req,res)=>{
+    //    const greenwebsms = new URLSearchParams(); greenwebsms.append('token', 'yourtokenhere'); greenwebsms.append('to', '+88017xxxxxxx'); greenwebsms.append('message', 'test sms'); axios.post('http://api.greenweb.com.bd/api.php', greenwebsms).then(response => { console.log(response.data); });
+    // })
     
 //sending mail
     app.post('/sendmail',(req,res)=>{
       
         //console.log(req.body)
         const email=[];
+        const num=[];
+       
         req.body.map((m)=>{
         
           email.push(m.email)
-         
+         num.push(m.phone)
           
         })
        console.log("Email",email);
+       console.log("NUm", num);
         //[...email,req.body]
  var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -71,7 +77,14 @@ transporter.sendMail(mailOptions, function(error, info){
     res.status(200).send("Email Sends Success!")
   }
 });
-    })
+    
+const greenwebsms = new URLSearchParams(); 
+greenwebsms.append('token', '27450137421708371462aaec4e491646d018373b70a01c17bdf0'); 
+greenwebsms.append('to', num ); greenwebsms.append('message', 'Bus number 001,003,004 is departing from Mokto Monch within 10 minutes'); axios.post('http://api.greenweb.com.bd/api.php', greenwebsms).then(response => { console.log(response.data); });
+
+
+})
+
     
     
 
@@ -81,9 +94,11 @@ app.post('/sendteacher',(req,res)=>{
       
   //console.log(req.body)
   const email=[];
+  const num=[];
   req.body.map((m)=>{
   
     email.push(m.email)
+    num.push(m.phone)
    
     
   })
@@ -112,6 +127,10 @@ console.log('Email sent: ' + info.response);
 res.send("Email success")
 }
 });
+
+const greenwebsms = new URLSearchParams(); 
+greenwebsms.append('token', '27450137421708371462aaec4e491646d018373b70a01c17bdf0'); 
+greenwebsms.append('to', num ); greenwebsms.append('message', 'Bus number 001,003,004 is departing from Mokto Monch within 10 minutes'); axios.post('http://api.greenweb.com.bd/api.php', greenwebsms).then(response => { console.log(response.data); });
 })
 
 
