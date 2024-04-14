@@ -1,0 +1,9 @@
+.com{
+    background-image: url('../images/complain.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    padding-bottom: 100px;
+    max-width: 100%;
+    min-height: 720px;
+}

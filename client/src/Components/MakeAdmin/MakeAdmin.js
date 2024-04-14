@@ -46,18 +46,18 @@ function MakeAdmin() {
   return (
     <div className='container'>
         <div className="row">
-            <div className='col-md-3 m-auto bg-muted'>
+            <div className='col-md-4 mt-5 pt-2 m-auto bg-muted'>
                 <h2>Make Admin General</h2>
                 <form onSubmit={handleSubmit}>
                     <input onChange={(e)=>setStudentAdmin(e.target.value)} className='form-control' type="email" placeholder="Enter email"/>
-                    <input className='form-control' type="submit" value="submit"/>
+                    <input className='form-control btn btn-primary mt-2' type="submit" value="submit"/>
                 </form>
             </div>
-            <div className='col-md-3 bg-muted'>
-                <h2>Make Admin Teachers</h2>
+            <div className='col-md-4 mt-5 pt-2 bg-muted'>
+                <h2>Make Admin Teacher</h2>
                 <form onSubmit={handleSubmit2}>
                     <input onChange={(e)=>setTeacherAdmin(e.target.value)}  className='form-control' type="email" placeholder="Enter email"/>
-                    <input className="form-control" type="submit" value="submit"/>
+                    <input className="form-control btn btn-success mt-2" type="submit" value="submit"/>
                 </form>
             </div>
         </div>

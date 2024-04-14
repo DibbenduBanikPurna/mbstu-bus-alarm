@@ -16,26 +16,25 @@ FirebaseInit();
 const useFirebase = () => {
   const [users, setUsers] = useState({});
   const [setErrors] = useState("");
- // const [setIsLoading] = useState(true);
-  // const [token, setIdToken] = useState('')
+ 
 
   const auth = getAuth();
-  const signInUsingGoogle = () => {
-    //setIsLoading(true);
-    const provider = new GoogleAuthProvider();
+  // const signInUsingGoogle = () => {
+  //   //setIsLoading(true);
+  //   const provider = new GoogleAuthProvider();
 
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        setUsers(user);
-      })
-      .then((error) => {
-        setErrors(error.message);
-        alert(error.message)
-      })
-      //.finally(() => setIsLoading(false));
-  };
+  //   signInWithPopup(auth, provider)
+  //     .then((result) => {
+  //       const user = result.user;
+  //       console.log(user);
+  //       setUsers(user);
+  //     })
+  //     .then((error) => {
+  //       setErrors(error.message);
+  //       alert(error.message)
+  //     })
+  //     //.finally(() => setIsLoading(false));
+  // };
 
   const signUp = (name, email, password,history) => {
     createUserWithEmailAndPassword(auth, email, password)
@@ -45,7 +44,7 @@ const useFirebase = () => {
         updateProfile(auth.currentUser, {
           displayName: name,
         })
-          .then(() => {  history.push('/')})
+          .then(() => {  history.push('/');  sessionStorage.setItem("email",user.email)})
           .catch((error) => {
             console.log(error);
           });
@@ -104,7 +103,7 @@ const useFirebase = () => {
     logOut,
     //isLoading,
     // token,
-    signInUsingGoogle,
+   // signInUsingGoogle,
     signIn,
     signUp,
   };

@@ -45,7 +45,7 @@ function StudentRegister() {
   return (
     <div className='container'>
         <div className='row pt-5'>
-            <div className='col-md-4 border m-auto bg-muted'>
+            <div className='col-md-6 p-5 border m-auto bg-light'>
             <form onSubmit={handleSubmit}>
                 <h6>Student Registration</h6>
                 <div className="form-group">
@@ -87,7 +87,7 @@ function StudentRegister() {
     <input name="re_password" onChange={handleChange} type="password" className="form-control" id="re-Password" placeholder="Password"/>
   </div>
   
-  <button type="submit" className="btn btn-primary form-control">Submit</button>
+  <button type="submit" className="btn btn-primary form-control mt-4">Submit</button>
 </form>
             </div>
         </div>

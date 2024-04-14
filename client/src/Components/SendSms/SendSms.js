@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import './SendSms.css'
 import axios from 'axios'
 
     
@@ -62,17 +62,24 @@ const requestOptions = {
             .then(data =>console.log(data));
     }
   return (
-    <div className='container'>
+    <div className='send'>
+    <div className='container '>
         <div className='row'>
-            <div className='col-md-4 m-auto mt-5'>
-                <div className='card-body bg-light'>
-                <button className='btn btn-success' onClick={handleSms}> Send-Notification Students</button>
-                <br/>
-                <button className='btn btn-primary mt-4' onClick={handleTeacher} > Send-Notification Teachers</button>
+            <div className='col-md-6 mt-5 pt-5 '>
+                <div className='card-body bg-light mt-5 '>
+                <button className='btn btn-success form-control' onClick={handleSms}> Send-Notification Students</button>
+         
+                {/* <button className='btn btn-primary mt-4' onClick={handleTeacher} > Send-Notification Teachers</button> */}
                 </div>
             </div>
+            <div className='col-md-6 mt-5 pt-5'>
+            <div className='card-body bg-light mt-5'>
+                  <button className='btn btn-primary form-control ' onClick={handleTeacher} > Send-Notification Teachers</button>
+                  </div>
+                  </div>
         </div>
        
+        </div>
     </div>
   )
 }

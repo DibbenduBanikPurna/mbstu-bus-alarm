@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const ObjectId = require("mongodb").ObjectId;
-const twilio = require('twilio');
+//const twilio = require('twilio');
 const nodemailer = require("nodemailer");
 const axios=require('axios')
 console.log(ObjectId);
@@ -14,7 +14,7 @@ app.use(cors());
 
 const accountSid ="ACbd24b31f4db5bd8ad63df4af3888d222" //"ACbd24b31f4db5bd8ad63df4af3888d222";
 const authToken = "2e232bb3363e72d3a6f96c7262fbbcf9";
-const clients = require('twilio')(accountSid, authToken);
+//const clients = require('twilio')(accountSid, authToken);
 
 //AIzaSyAACG3mLEXEUEDqPCvh6ZFteaLQDnH0YbI
 
@@ -86,6 +86,13 @@ greenwebsms.append('to', num ); greenwebsms.append('message', 'Bus number 001,00
 })
 
     
+app.post('/complain',(req,res)=>{
+  console.log(req.body)
+  res.send("complained")
+  const greenwebsms = new URLSearchParams(); 
+greenwebsms.append('token', '27450137421708371462aaec4e491646d018373b70a01c17bdf0'); 
+greenwebsms.append('to', '01777332208' ); greenwebsms.append('message', req.body.mess); axios.post('http://api.greenweb.com.bd/api.php', greenwebsms).then(response => { console.log(response.data); });
+})
     
 
 //send mail to teachers
@@ -386,7 +393,7 @@ greenwebsms.append('to', num ); greenwebsms.append('message', 'Bus number 001,00
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("Welcome to dept seminer library");
+  res.send("Welcome to Real_Time_Bus_Alaraming_System");
 });
 
 

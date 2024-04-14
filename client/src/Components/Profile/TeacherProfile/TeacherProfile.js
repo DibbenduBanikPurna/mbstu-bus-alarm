@@ -35,10 +35,10 @@ export default function TeacherProfile() {
      }
   return (
     <div className='container'>
-    <div className='row'>
-      <div className='col-md-4 m-auto'>
-      <div className='card mt-5'>
-        <h4>Name:{teacherData.name}</h4>
+    <div className='row p-2'>
+      <div className='col-md-5 m-auto'>
+      <div className='card p-5 mt-5'>
+        <h5>Name:{teacherData.name}</h5>
         <p>Dept:{teacherData.dept}</p>
         
         <p>Email:{teacherData.email}</p>

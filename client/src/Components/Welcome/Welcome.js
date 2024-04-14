@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Welcome.css";
 //import axios from 'axios'
 import busTime from '../images/bus-time.jpg'
-import All from '../images/12.jpg'
+// import All from '../images/12.jpg'
 const Welcome = () => {
   const [admin,setAdmin]=useState('')
   useEffect(()=>{
@@ -29,7 +29,7 @@ const Welcome = () => {
           
           <p> Current-Time :{date}</p>
          {
-          admin=="admin"?  <img className="img-fluid" src={All}/> :  <img className="img-fluid" src={busTime}/>
+          admin=="admin"?  <img className="img-fluid" src={busTime}/> :  <img className="img-fluid" src={busTime}/>
          }
           {/* <img className="img-fluid" src={busTime}/> */}
         </div>

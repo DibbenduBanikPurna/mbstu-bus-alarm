@@ -47,7 +47,7 @@ fetch('http://localhost:5000/teacher', requestOptions)
   return (
     <div className='container'>
         <div className='row'>
-            <div className='col-md-4 m-auto'>
+            <div className='col-md-6 p-5 m-auto'>
             <form onSubmit={handleSubmit}>
                 <h3>Teacher Registration</h3>
                 <div className="form-group">
@@ -85,7 +85,7 @@ fetch('http://localhost:5000/teacher', requestOptions)
     <input name="re_password" onChange={handleChange} type="password" className="form-control" id="re-Password" placeholder="Password"/>
   </div>
   
-  <button type="submit" className="btn btn-primary form-control">Submit</button>
+  <button type="submit" className="btn btn-primary form-control mt-4">Submit</button>
 </form>
             </div>
         </div>
