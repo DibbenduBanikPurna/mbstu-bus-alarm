@@ -40,11 +40,11 @@ async function run() {
 //sending mail
     app.post('/sendmail',(req,res)=>{
       
-        //console.log(req.body)
+        console.log(req.body)
         const email=[];
         const num=[];
        
-        req.body.map((m)=>{
+        req.body.phone.map((m)=>{
         
           email.push(m.email)
          num.push(m.phone)
@@ -52,7 +52,7 @@ async function run() {
         })
        console.log("Email",email);
        console.log("NUm", num);
-        //[...email,req.body]
+       
  var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -65,7 +65,7 @@ var mailOptions = {
   from: 'purna.banik164487@gmail.com',
   to: email,
   subject: 'Sending Email using Node.js',
-  text: 'Bus number 001,003,004 is departing from Mokto Monch within 10 minutes'
+  text: `Bus number ${req.body.mess.bus} is departing from Mokto Monch within 10 minutes`
 };
 
 transporter.sendMail(mailOptions, function(error, info){
@@ -80,7 +80,7 @@ transporter.sendMail(mailOptions, function(error, info){
     
 const greenwebsms = new URLSearchParams(); 
 greenwebsms.append('token', '27450137421708371462aaec4e491646d018373b70a01c17bdf0'); 
-greenwebsms.append('to', num ); greenwebsms.append('message', 'Bus number 001,003,004 is departing from Mokto Monch within 10 minutes'); axios.post('http://api.greenweb.com.bd/api.php', greenwebsms).then(response => { console.log(response.data); });
+greenwebsms.append('to', num ); greenwebsms.append('message', `Bus number ${req.body.mess.bus} is departing from Mokto Monch within 10 minutes`); axios.post('http://api.greenweb.com.bd/api.php', greenwebsms).then(response => { console.log(response.data); });
 
 
 })
@@ -110,7 +110,7 @@ app.post('/sendteacher',(req,res)=>{
     
   })
  console.log("Email",email);
-  //[...email,req.body]
+  
 var transporter = nodemailer.createTransport({
 service: 'gmail',
 auth: {
@@ -123,7 +123,7 @@ var mailOptions = {
 from: 'purna.banik164487@gmail.com',
 to: email,
 subject: 'Sending Email using Node.js',
-text: 'Bus number 001,002,005 is departing from Mokto Monch within 10 minutes'
+text: 'Mini bus micro bus is departing from Mokto Monch within 10 minutes'
 };
 
 transporter.sendMail(mailOptions, function(error, info){
@@ -185,17 +185,17 @@ greenwebsms.append('to', num ); greenwebsms.append('message', 'Bus number 001,00
     //console.log(sms);
     
 
-    app.post('/sendsms', async(req,res)=>{
-      clients.messages
-      .create({
-         body: 'Bus number 001, 003, 004 is departing from Mokto Monch within 10 minutes',
-         from: '+16065369838',
-         to: '+8801643423006'
-       })
-      .then(message => res.send(message.sid));
+    // app.post('/sendsms', async(req,res)=>{
+    //   clients.messages
+    //   .create({
+    //      body: 'Bus number 001, 003, 004 is departing from Mokto Monch within 10 minutes',
+    //      from: '+16065369838',
+    //      to: '+8801643423006'
+    //    })
+    //   .then(message => res.send(message.sid));
 
       
-    })
+    // })
 
 
 
@@ -371,7 +371,63 @@ greenwebsms.append('to', num ); greenwebsms.append('message', 'Bus number 001,00
       );
       })
 
+      app.get('/specialstudent/:dept',async(req,res)=>{
+        console.log(req.params.dept)
+        const options = {
+         
+          
+          projection: { _id: 0,    password:0, re_password:0 },
+        };
+        const result = await studentCollcetion.find({dept:req.params.
+          dept},options).toArray()
+        //console.log(result)
+        res.send(result);
+      })
 
+
+      app.post('/sendspecial',(req,res)=>{
+        console.log( req.body)
+        res.send(req.body)
+        
+         const email=[];
+         const num=[];
+         req.body.map((m)=>{
+        
+           email.push(m.email)
+           num.push(m.phone)
+         
+          
+         })
+       console.log("Email",email);
+        
+      var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+      user: 'purna.banik164487@gmail.com',
+      pass: 'ddvh cspm kssq wjpc'
+      }
+      });
+      
+      var mailOptions = {
+      from: 'purna.banik164487@gmail.com',
+      to: email,
+      subject: 'Sending Email using Node.js',
+      text: ' bus is departing from Mokto Monch within 10 minutes'
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+      console.log(error);
+      } else {
+      console.log('Email sent: ' + info.response);
+      res.send("Email success")
+      }
+      });
+      
+      const greenwebsms = new URLSearchParams(); 
+      greenwebsms.append('token', '27450137421708371462aaec4e491646d018373b70a01c17bdf0'); 
+      greenwebsms.append('to', num ); greenwebsms.append('message', 'Special Bus is departing from Mokto Monch within 10 minutes'); axios.post('http://api.greenweb.com.bd/api.php', greenwebsms).then(response => { console.log(response.data); });
+      })
 
 
     const saveUser = (email, displayName, method) => {

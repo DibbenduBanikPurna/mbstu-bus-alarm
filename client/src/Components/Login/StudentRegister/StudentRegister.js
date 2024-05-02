@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import useFirebase from '../../../Hooks/UseFirebase'
 import { useHistory } from 'react-router-dom';
+import './StudentRegister.css'
 function StudentRegister() {
     const [newUser,setNewUser]=useState({category:"student",role:"",notification:"on"})
     const { signUp,   users } = useFirebase()
-    //console.log(users)
+    
     const history=useHistory()
     const handleChange = (e) => {
         const field = e.target.name;
@@ -60,7 +61,7 @@ function StudentRegister() {
   </div>
   <div className="form-group">
     <label for="dept">Department</label>
-    <input name="dept"  onChange={handleChange}  type="text" className="form-control" id="dept" aria-describedby="dept" placeholder="Enter Your Dept."/>
+    <input name="dept"  onChange={handleChange}     type="text" className="form-control capitalize" id="dept" aria-describedby="dept" placeholder="Enter Your Dept."/>
   
   </div>
   <div className="form-group">
