@@ -65,7 +65,7 @@ var mailOptions = {
   from: 'purna.banik164487@gmail.com',
   to: email,
   subject: 'Sending Email using Node.js',
-  text: `Bus number ${req.body.mess.bus} is departing from Mokto Monch within 10 minutes`
+  text: `৪ টা ৩০ মিনিট এর  ${req.body.mess} আগমী ১০ মিনিটের মধ্যে মুক্ত মঞ্চ হতে ছেড়ে যাচ্ছে `
 };
 
 transporter.sendMail(mailOptions, function(error, info){
@@ -80,7 +80,7 @@ transporter.sendMail(mailOptions, function(error, info){
     
 const greenwebsms = new URLSearchParams(); 
 greenwebsms.append('token', '27450137421708371462aaec4e491646d018373b70a01c17bdf0'); 
-greenwebsms.append('to', num ); greenwebsms.append('message', `Bus number ${req.body.mess.bus} is departing from Mokto Monch within 10 minutes`); axios.post('http://api.greenweb.com.bd/api.php', greenwebsms).then(response => { console.log(response.data); });
+greenwebsms.append('to', num ); greenwebsms.append('message', `৪ টা ৩০ মিনিট এর  ${req.body.mess} আগমী ১০ মিনিটের মধ্যে মুক্ত মঞ্চ হতে ছেড়ে যাচ্ছে `); axios.post('http://api.greenweb.com.bd/api.php', greenwebsms).then(response => { console.log(response.data); });
 
 
 })
@@ -102,7 +102,7 @@ app.post('/sendteacher',(req,res)=>{
   //console.log(req.body)
   const email=[];
   const num=[];
-  req.body.map((m)=>{
+  req.body.teacherMail.map((m)=>{
   
     email.push(m.email)
     num.push(m.phone)
@@ -123,7 +123,7 @@ var mailOptions = {
 from: 'purna.banik164487@gmail.com',
 to: email,
 subject: 'Sending Email using Node.js',
-text: 'Mini bus micro bus is departing from Mokto Monch within 10 minutes'
+text: `৪ টা ৩০ এর ${req.body.mess} ১০ মিনিটের মধ্যে মুক্ত মঞ্চ হতে ছেড়ে যাচ্ছে`
 };
 
 transporter.sendMail(mailOptions, function(error, info){
@@ -137,7 +137,9 @@ res.send("Email success")
 
 const greenwebsms = new URLSearchParams(); 
 greenwebsms.append('token', '27450137421708371462aaec4e491646d018373b70a01c17bdf0'); 
-greenwebsms.append('to', num ); greenwebsms.append('message', 'Bus number 001,003,004 is departing from Mokto Monch within 10 minutes'); axios.post('http://api.greenweb.com.bd/api.php', greenwebsms).then(response => { console.log(response.data); });
+greenwebsms.append('to', num ); greenwebsms.append('message', `৪ টা ৩০ এর ${req.body.mess} ১০ মিনিটের মধ্যে মুক্ত মঞ্চ হতে ছেড়ে যাচ্ছে `); axios.post('http://api.greenweb.com.bd/api.php', greenwebsms).then(response => { console.log(response.data); });
+
+
 })
 
 

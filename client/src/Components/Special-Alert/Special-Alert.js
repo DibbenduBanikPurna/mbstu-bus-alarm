@@ -65,7 +65,8 @@ function SpecialAlert() {
       
             
          
-                <div className='card-body bg-light text-dark  mt-5 '>
+                <div className='card-body bg-light text-dark  mt-5 p-5'>
+                    <h3>Special Bus For Students</h3>
                 <label htmlFor="departments">Choose a department:</label>
             <select id="departments" className="form-control" name="departments" value={selectedDepartment} onChange={handleChange}>
                 <option value="">Select Department</option>
